@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title> Encriptador de mensajes </title>
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link rel="icon" href="Imágenes/logo_pag2.png">
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="logo"> 
+                <h1><img src="Imágenes/Logo.png" alt="Logo de Alura"></h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="decodificado">
+                <textarea id="texto" class="input-padron" placeholder="Ingrese su texto aquí" autofocus></textarea> <!--Texto a encriptar/desencriptar-->
+                
+                <!--Es la pantalla de espera hasta que se decodifique-->
+                
+                <ul id="decodificado1">
+                    <li>
+                        <img src="Imágenes/Muñeco.png" class="munheco" alt="Investigador">
+                        <p id="mensajeNoEncontrado"> Ningún mensaje fue encontrado </p>
+                        <p class="instruccion">Ingresa el texto que desees encriptar o desencriptar</p>
+                    </li>
+                </ul>
+            </div>
+                
+            
+
+            <div id="decodificado2" style="display: none;"> <!--Es el área de texto codificado/decodificado-->
+                <textarea id="textoResultado" readonly></textarea> 
+                <input type="button" value="Copiar texto" class="copiar" onclick="updateClipboard(textoResultado.value)">
+            </div>
+
+            <div class="botones"> <!-- Botones para encriptar y desencriptar -->
+                <img src="Imágenes/bi_exclamation-circle-fill.png" class="exclamacion" alt="Sólo letras minúsculas y sin acentos">
+                <p class="textoInstructivo"> Sólo letras minúsculas y sin acentos</p>
+                <br>
+                <input type="button" value="Encriptar" class="encriptar" onclick="encriptar()">
+                <input type="button" value="Desencriptar" class="desencriptar" onclick="desencriptar()">
+            </div>
+
+        </main>
+
+        <footer>
+            <p class="datosAutor"> Creado por Gastón Caminos </p>
+            <p> gastoncaminos@gmail.com</p>
+        </footer>
+    </body>
+
+
+</html>
+
+
+<script type="text/javascript">
+
+    function codificarMensaje(mensaje){
+
+        /**
+        * Esta función se encarga de encriptar el texto
+        * Claves:
+        * La letra "a" es convertida para "ai"
+        * La letra "e" es convertida para "enter"
+        * La letra "i" es convertida para "imes"
+        * La letra "o" es convertida para "ober"
+        * La letra "u" es convertida para "ufat"
+        */
+        
+        var encriptado = ""; /* String vacío al que luego se agrega la encriptación */
+        var vocales = ["a", "e", "i", "o", "u"];
+        for(var i in mensaje){                  /* Recorro el string caracter a caracter */
+            if (vocales.includes(mensaje[i])){ /* Verfico si el caracter es una vocal y aplico la modificación necesaria*/
+                if (mensaje[i] == "a"){
+                encriptado = encriptado + mensaje[i] + "i";
+                }
+                if (mensaje[i] == "e"){
+                encriptado = encriptado + mensaje[i] + "nter";
+                }
+                if (mensaje[i] == "i"){
+                    encriptado = encriptado + mensaje[i] + "mes";
+                }
+                if (mensaje[i] == "o"){
+                    encriptado = encriptado + mensaje[i] + "ber";
+                }
+                if (mensaje[i] == "u"){
+                    encriptado = encriptado + mensaje[i] + "fat";
+                }
+            }else{
+                encriptado = encriptado + mensaje[i]
+            }
+        }
+        return encriptado;
+    }
+
+    function decodificarMensaje(mensaje){
+
+        /**
+        * Esta función se encarga de desencriptar el texto siguiendo las reglas inversas a "codificarMensaje"
+        */
+        var desencriptado = mensaje
+
+        desencriptado = mensaje.replace(/ai/g, "a")
+        desencriptado = desencriptado.replace(/enter/g, "e")
+        desencriptado = desencriptado.replace(/imes/g, "i")
+        desencriptado = desencriptado.replace(/ober/g, "o")
+        desencriptado = desencriptado.replace(/ufat/g, "u")
+
+        return desencriptado;
+    }
+
+    function encriptar(){
+        
+        /**
+        Esta función se aplica al botón "encriptar" para ocultar la imágen y el texto "Ningún mensaje fue encontrado"
+        **/
+        var texto = document.getElementById("texto"); /* Obtengo el texto de la caja */
+
+        if (texto.value !=""){
+            document.getElementById("decodificado1").style.display = "none";
+            document.getElementById("decodificado2").style.display = "block";
+            var mensajeCodificado = codificarMensaje(texto.value);
+            document.getElementById("textoResultado").innerHTML = mensajeCodificado;
+        } else{
+            alert("Por favor, ingrese un texto a encriptar");
+        }
+        
+    }
+
+    function desencriptar(){
+        /**
+        Esta función se aplica al botón "desencriptar" para ocultar la imágen y el texto "Ningún mensaje fue encontrado"
+        **/
+        var texto = document.getElementById("texto"); /* Obtengo el texto de la caja */
+
+        if (texto.value !=""){
+            document.getElementById("decodificado1").style.display = "none";
+            document.getElementById("decodificado2").style.display = "block";
+            var mensajeDecodificado = decodificarMensaje(texto.value);
+            document.getElementById("textoResultado").innerHTML = mensajeDecodificado;
+        } else{
+            alert("Por favor, ingrese un texto a desencriptar");
+        }
+        
+    }
+
+    /* Botón de copiado */
+    navigator.permissions.query({name: "clipboard-write"}).then((result) => {
+        if (result.state === "granted" || result.state === "prompt") {
+        /* write to the clipboard now */
+        }
+    });
+
+    function updateClipboard(newClip) {
+        navigator.clipboard.writeText(newClip).then(() => {
+        /* clipboard successfully set */
+        }, () => {
+        /* clipboard write failed */
+        });
+    }
+
+</script>

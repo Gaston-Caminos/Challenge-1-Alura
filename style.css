@@ -1,0 +1,246 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    background: #E5E5E5;
+}
+
+header{
+    padding: 20px 0;
+}
+
+.decodificado{
+    height: 435px;
+}
+
+.input-padron{
+    position: relative;
+    font-size: 32px;
+    font-family: Montserrat;
+    color: #0A3871;
+    top: 10px;
+    left: 100px;
+    width: 800px;
+    height: 450px;
+    background: rgba(255, 255, 255, 0);
+    border: none;
+    resize: none;
+}
+
+.input-padron:focus{ /* Le quito los bordes al seleccionarlo */
+    outline: none;
+}
+
+ul li{ /* Caja en la que se muestra el "muñeco" y las instrucciones */
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    text-align: center;
+    display: inline-block;
+
+    /* Diseño de la caja */
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 60px;
+    height: 500px;
+    width: 300px;
+    box-shadow: 0 10px 10px 2px #888888; /* horizontal vertical difumado spread color */
+}
+
+#decodificado2{ /* Aquí se muestra el mensaje codificado/decodificado */
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    text-align: center;
+    display: inline-block;
+
+    /* Diseño de la caja */
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 60px;
+    height: 500px;
+    width: 300px;
+    box-shadow: 0 10px 10px 2px #888888; /* horizontal vertical difumado spread color */
+}
+
+#textoResultado{
+    position: relative;
+    top: 65px;
+    border: none;
+    resize: none;
+    color: #495057;
+    font-size: 24px;
+    width: 80%;
+    height: 80%;
+    font-family: Montserrat;
+    text-align: center;
+}
+
+#textoResultado:focus{ /* Le quito los bordes al seleccionarlo */
+    outline: none;
+}
+
+.munheco{
+    width: 80%;
+    position: relative;
+    top: 100px;
+}
+
+#mensajeNoEncontrado{
+    position: relative;
+    top: 100px;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.instruccion{
+    position: relative;
+    top: 100px;
+    font-size: 16px;
+}
+
+.exclamacion{
+    position: relative;
+    left: 100px;
+}
+
+.textoInstructivo{
+    position: relative;
+    top: -5px;
+    left: 105px;
+    display: inline-block;
+    color: #495057;
+    font-size: 12px;
+    
+}
+.encriptar{ /* Diseño del botón "encriptar" */
+    position: relative;
+    left: 100px;
+    top: 0px;
+    width: 200px;
+    padding: 15px 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #0A3871;
+    border: none;
+    border-radius: 20px;
+    transition: 1s all;
+    cursor: pointer;
+}
+
+.desencriptar{ /* Diseño del botón "desencriptar" */
+    position: relative;
+    left: 130px;
+    top: 0px;
+    width: 200px;
+    padding: 15px 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #0A3871;
+    background: #D8DFE8;
+    border: 1px solid #0A3871;
+    border-radius: 20px;
+    transition: 1s all;
+    cursor: pointer;
+}
+
+.copiar{ /* Diseño del botón "copiar" */
+    position: relative;
+    top: 0px;
+    width: 200px;
+    padding: 15px 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #0A3871;
+    background: #D8DFE8;
+    border: none;
+    border-radius: 20px;
+    transition: 1s all;
+    cursor: pointer;
+}
+.encriptar:hover{
+    box-shadow: 10px 10px 10px 2px #888888;
+    transform: scale(1.2);
+}
+.desencriptar:hover{
+    box-shadow: 10px 10px 10px 2px #888888;
+    transform: scale(1.2);
+}
+.copiar:hover{
+    box-shadow: 10px 10px 10px 2px #888888;
+    transform: scale(1.2);
+}
+
+footer{
+    text-align: center;
+    padding: 20px;
+}
+
+/***************************************************************************************************/
+
+/* Condiciones para formatos diferentes (otras pantallas) */
+@media screen and (max-width: 480px){
+
+    .decodificado{
+        height: 300px;
+    }
+     
+    .input-padron{
+        height: 90%;
+        width: 50%;
+        text-align: center;
+    }
+    
+    ul li{
+        position: absolute;        
+        top: 480px;
+        left: 50px;
+        height: 150px;
+    }
+
+    .munheco{
+        display: none;
+    }
+
+    #mensajeNoEncontrado, .instruccion{
+        position: static;
+    }
+
+    #decodificado2{
+        position: absolute;        
+        top: 480px;
+        left: 50px;
+        height: 250px;
+    }
+
+    #textoResultado{
+        position: relative;
+        top: 20px;
+        height: 50%;
+        width: 50%;
+        text-align: center;
+    }
+
+    .copiar{
+        position: relative;
+        top: 65px;
+    }
+
+    .exclamacion{
+        position: static;
+    }
+    .textoInstructivo{
+        position: static;
+    }
+    .encriptar{
+        position: static;
+    }
+    .desencriptar{
+        position: static;
+    }
+
+    footer{
+        position: relative;
+        top: 300px;
+    }
+}
