@@ -176,10 +176,6 @@ footer{
     padding: 20px;
 }
 
-.miMail{
-    color: #000000;
-    text-decoration: none;
-}
 /***************************************************************************************************/
 
 /* Condiciones para formatos diferentes (otras pantallas) */
@@ -197,7 +193,7 @@ footer{
     
     ul li{
         position: absolute;        
-        top: 550px;
+        top: 480px;
         left: 50px;
         height: 150px;
     }
@@ -212,7 +208,7 @@ footer{
 
     #decodificado2{
         position: absolute;        
-        top: 550px;
+        top: 480px;
         left: 50px;
         height: 250px;
     }
@@ -229,34 +225,18 @@ footer{
         position: relative;
         top: 65px;
     }
-    .copiar:hover{
-        transform:none;
-        box-shadow: none;
-    }
-    
+
     .exclamacion{
-        position: relative;
-        
+        position: static;
     }
     .textoInstructivo{
-        position: relative;
+        position: static;
     }
     .encriptar{
-        position: relative;
+        position: static;
     }
-    .encriptar:hover{
-        transform: none;
-        box-shadow: none;
-    }
-
     .desencriptar{
-        position: relative;
-        left: 100px;
-        top: 10px;
-    }
-    .desencriptar:hover{
-        transform:none;
-        box-shadow: none;
+        position: static;
     }
 
     footer{
